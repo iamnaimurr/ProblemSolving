@@ -1,53 +1,44 @@
 #include <stdio.h>
 
 int main() {
-    int queue[100],front= -1,rear= -1,choice,value,k,i;
+    int q[100], start = -1, end = -1, option, num, addValue, i;
     
     while (1) {
-        printf("\n1) Enqueue\n2) Dequeue\n3) Display\n4) Add Value K to Even Nodes\n5) Exit\nEnter Choice: ");
-        scanf("%d",&choice);
+        printf("\n1)Enqueue 2)Dequeue 3)Display 4)Add K to Even Nodes 5)Exit\nEnter Option:");
+        scanf("%d", &option);
 
-        if (choice==1) {
-            if (rear==99) {
-               printf("Queue Overflow");
-               continue;
+        if (option == 1) {
+            if (end == 99) {
+                printf("Queue Overflow");
+                continue;
             }
-            printf("Enter Value: ");
-            scanf("%d", &value);
-            if (front == -1) front = 0;
-            rear++;
-            queue[rear] = value;
+            printf("Enter Number:");
+            scanf("%d", &num);
+            if (start == -1) start = 0;
+            q[++end] = num;
         } 
-        else if (choice == 2) {
-            if(front == -1 || front > rear) {
-               printf("Queue Underflow");
-               continue;
+        else if (option == 2) {
+            if (start == -1 || start > end) {
+                printf("Queue Underflow");
+                continue;
             }
-            front++;
+            start++;
         } 
-        else if (choice == 3) {
-            if (front == -1 || front > rear){
-            printf("Queue is Empty");
-            continue;
+        else if (option == 3) {
+            if (start == -1 || start > end) {
+                printf("Queue is Empty");
+                continue;
             }
-            for (i = front; i <= rear; i++){
-                printf("%d",queue[i]);
-            }
+            for (i = start; i <= end; i++) printf("%d ", q[i]);
             printf("\n");
         } 
-        else if (choice == 4) {
-            printf("Enter Value of K: ");
-            scanf("%d", &k);
-            for (i = front;i<=rear;i++) {
-                if (queue[i]%2==0)queue[i]+= k;
-            }
+        else if (option == 4) {
+            printf("Enter Value of K:");
+            scanf("%d", &addValue);
+            for (i = start; i <= end; i++) if (q[i] % 2 == 0) q[i] += addValue;
         } 
-        else if(choice == 5){
-            break;
-        } 
-        else{
-            printf("Invalid Choice");
-        }
+        else if (option == 5) break;
+        else printf("Invalid Option");
     }
     return 0;
 }
